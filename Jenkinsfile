@@ -9,20 +9,20 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'python -m pip install -r requirements.txt'
+                sh 'python3 -m pip install -r requirements.txt'
             }
         }
 
         stage('Start Web App') {
             steps {
-                sh 'nohup python app.py &'
+                sh 'nohup python3 app.py &'
                 sh 'sleep 5'
             }
         }
 
         stage('Run Selenium Tests') {
             steps {
-                sh 'python test_login.py'
+                sh 'python3 test_login.py'
             }
         }
     }
