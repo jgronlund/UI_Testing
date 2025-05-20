@@ -6,6 +6,15 @@ pipeline {
     }
 
     stages {
+
+        stage('Check Python') {
+            steps {
+                sh 'which pip'
+                sh 'which python3'
+                sh 'pip --version'
+                sh 'python3 --version'
+            }
+        }
         stage('Install Dependencies') {
             steps {
                 sh 'pip install -r requirements.txt'
@@ -28,7 +37,7 @@ pipeline {
 
     post {
         always {
-            echo 'Cleaning up...'
+            echo 'Cleaning up application'
             sh "pkill -f app.py || true"
         }
     }
