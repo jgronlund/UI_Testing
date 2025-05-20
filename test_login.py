@@ -29,8 +29,10 @@ def test_failed_login():
     print("Failed login test passed")
 
 # Run tests
-test_successful_login()
-test_failed_login()
+try:
+    test_successful_login()
+    test_failed_login()
 
 # Quit driver
-driver.quit()
+finally:
+    driver.quit()
