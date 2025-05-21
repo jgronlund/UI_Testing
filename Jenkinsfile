@@ -19,6 +19,12 @@ pipeline {
                 sh 'sleep 5'
             }
         }
+        
+        stage('Run Unit Tests') {
+            steps {
+                sh 'python -m unittest discover -s tests'
+            }
+        }
 
         stage('Run Selenium Tests') {
             steps {
