@@ -17,7 +17,7 @@ def test_successful_login():
     time.sleep(1)  # Let the page load
     assert "Dashboard" in driver.title or "Welcome" in driver.page_source
     print("Successful login test passed")
-    print("changing print statement for testing purposes")
+    print("changing print statement for testing purposest")
 
 def test_failed_login():
     driver.get("http://127.0.0.1:5000/login")
