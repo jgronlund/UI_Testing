@@ -3,7 +3,7 @@ from app import app
 
 class WebAppTestCases(unittest.TestCase):
 
-    def setup(self):
+    def setUp(self):
         self.app = app.test_client()
         self.app.testing = True
 
