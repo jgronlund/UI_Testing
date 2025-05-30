@@ -48,6 +48,15 @@ class All_Tests(unittest.TestCase):
         self.assertTrue(self.billingservice.charge("bob", "bob@example.com"))
         mock_createuser.assert_called_once_with("bob", "bob@example.com")
 
+    def test_deleting_user(self):
+        result = self.userservice.delete_user("bob")
+        self.assertTrue(result)
+
+        with self.assertRaises(ValueError) as context:
+            self.userservice.get_user("bob")
+        self.assertEqual(str(context.exception), "User not found")
+
+
 if __name__ == "__main__":
     unittest.main()
     
