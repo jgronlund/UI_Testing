@@ -1,7 +1,7 @@
 import unittest
 
 from unittest import mock
-from apis.user_service import UserService
+from apis.user_service import UserService, BillingService
 
 def get_auth(username):
     user_app = UserService()
@@ -15,6 +15,7 @@ class All_Tests(unittest.TestCase):
     
     def setUp(self):
         self.userservice = UserService()
+        self.billingservice = BillingService()
         self.my_mock = mock.Mock()
 
     def test_get_users(self):
@@ -41,7 +42,11 @@ class All_Tests(unittest.TestCase):
             get_auth("non_user")
         self.assertEqual(str(context.exception), "Username not registered")
 
-
+    @mock.patch('apis.user_service.UserService.create_user')
+    def test_billing_charge(self, mock_createuser):
+        mock_createuser.return_value = {"email": "bob@example.com", "role": "user"}
+        self.assertTrue(self.billingservice.charge("bob", "bob@example.com"))
+        mock_createuser.assert_called_once_with("bob", "bob@example.com")
 
 if __name__ == "__main__":
     unittest.main()

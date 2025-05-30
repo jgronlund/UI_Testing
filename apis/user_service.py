@@ -1,6 +1,15 @@
 import time
 import random
 
+class BillingService:
+    def charge(self, user_id, email):
+        response = UserService.create_user(user_id, email)
+        if response['email'] == "bob@example.com":
+            return True
+        else:
+            return False
+
+
 class UserService:
     def __init__(self):
         # Simulated user "database"
